@@ -9,7 +9,7 @@ Explore character details, descriptions, and images in a modern and elegant UI.
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/4c40c42e-2474-4740-822d-e196c7c84d63" width="250" />
-  <img src="https://github.com/user-attachments/assets/d53003b2-3e92-48a5-b67d-e5dfdf42e492" width="250" />
+  <img src="https://github.com/user-attachments/assets/46a3545d-57f3-4b90-8544-a6c2ad047ea5" width="250" />
   <img src="https://github.com/user-attachments/assets/aa5ee296-0df2-4705-841b-d496bf69ded5" width="250" />
 </p>
 
