@@ -61,8 +61,9 @@ fun InfoDeskScreen(
             Spacer(modifier = Modifier.height(42.dp))
 
             CustomButton(
+                text = "Know More Member's",
                 onClick = onDetail,
-                modifier = Modifier.width(280.dp)
+                modifier = Modifier.width(300.dp)
             )
 
             Spacer(modifier = Modifier.height(12.dp))

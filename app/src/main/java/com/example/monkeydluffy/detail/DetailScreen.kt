@@ -47,7 +47,7 @@ fun DetailScreen(
                     ) {
                         Title(
                             title,
-                            fontSize = 42,
+                            fontSize = 32,
                             fontWeight = FontWeight.Bold,
                         )
                     }
