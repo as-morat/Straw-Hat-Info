@@ -2,9 +2,11 @@ package com.example.monkeydluffy.detail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,12 +30,14 @@ fun DetailScreen(
     onDetail: (Int) -> Unit = {}
 ) {
     val repo = CharacterRepo
+
+    // Gradient Title setup
     val title = listOf(
         Forth(
-            "STRAW HAT'S  ",
-            Color(0xFF191654),
-            Color(0xFF43C6AC),
-            Color(0xFFA1FFCE)
+            "STRAW HATS",
+            Color(0xFF191654),  // Midnight Navy
+            Color(0xFF43C6AC), // Sea Green
+            Color(0xFFD9D9D9)     // Faded Pirate Flag White
         )
     )
 
@@ -47,8 +51,8 @@ fun DetailScreen(
                     ) {
                         Title(
                             title,
-                            fontSize = 32,
-                            fontWeight = FontWeight.Bold,
+                            fontSize = 30,
+                            fontWeight = FontWeight.ExtraBold,
                         )
                     }
                 },
@@ -57,18 +61,18 @@ fun DetailScreen(
                         Image(
                             painter = painterResource(id = R.drawable.ic_launcher_back_arrow),
                             contentDescription = "Back",
-                            modifier = Modifier.size(24.dp),
-                            colorFilter = ColorFilter.tint(Color(0xFF43C6AC))
+                            modifier = Modifier.size(28.dp),
+                            colorFilter = ColorFilter.tint(Color(0xFF191654))
                         )
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
                     containerColor = Color.Transparent,
-                    titleContentColor = Color(0xffe8cbc0)
+                    titleContentColor = Color(0xFF3E2723)
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp) // Add horizontal padding
+                    .padding(horizontal = 12.dp)
             )
         },
         content = { innerPadding ->
@@ -80,19 +84,27 @@ fun DetailScreen(
             ) {
                 LazyColumn(
                     contentPadding = PaddingValues(vertical = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(14.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.fillMaxSize()
                 ) {
-                    items(items = repo.Characters, key = { character -> character.id }) { character ->
-                        Box(modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .background(
-                                color = Color.White.copy(alpha = 0.1f),
-                                shape = MaterialTheme.shapes.medium
-                            )
-                            .padding(6.dp)
+                    items(
+                        items = repo.Characters,
+                        key = { character -> character.id }
+                    ) { character ->
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
+                                .border(
+                                    width = 1.dp,
+                                    color = Color(0xFFB0BEC5),
+                                    shape = RoundedCornerShape(14.dp)
+                                )
+                                .background(
+                                    color = Color(0x66FFFFFF),
+                                    shape = RoundedCornerShape(14.dp)
+                                )
                         ) {
                             CustomItem(character) { onDetail(character.id) }
                         }

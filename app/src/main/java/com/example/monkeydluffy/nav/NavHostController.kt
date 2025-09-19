@@ -12,37 +12,57 @@ import com.example.monkeydluffy.info.InfoDeskScreen
 import com.example.monkeydluffy.info.data.CharacterRepo
 
 @Composable
-fun NavHostController(navController: NavHostController) {
+fun AppNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route
     ) {
         composable(Screen.Home.route) {
-            HomeScreen { navController.navigate(Screen.Detail.route) }
+            HomeScreen {
+                navController.navigate(Screen.Detail.route)
+            }
         }
 
         composable(Screen.Detail.route) {
             DetailScreen(
                 onBackPressed = { navController.popBackStack() },
-                onDetail = { id ->
-                    navController.navigate(Screen.Info.createRoute(id))
+                onDetail = { characterId ->
+                    navController.navigate(Screen.Info.createRoute(characterId)) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
 
         composable(
-            route = Screen.Info.route,
-            arguments = listOf(
-                navArgument("characterId") { type = NavType.IntType }
-            )
+            route = Screen.Info.routeWithArgs,
+            arguments = listOf(navArgument("characterId") { type = NavType.IntType })
         ) { backStackEntry ->
             val characterId = backStackEntry.arguments?.getInt("characterId") ?: 0
             val character = CharacterRepo.Characters.find { it.id == characterId }
 
+            val firstId = CharacterRepo.Characters.first().id
+            val lastId = CharacterRepo.Characters.last().id
+
             InfoDeskScreen(
                 character = character,
-                {navController.navigate(Screen.Home.route)},
-                { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                onNext = {
+                    if (characterId < lastId) {
+                        navController.navigate(Screen.Info.createRoute(characterId + 1)) {
+                            launchSingleTop = true
+                        }
+                    }
+                },
+                onPrev = {
+                    if (characterId > firstId) {
+                        navController.navigate(Screen.Info.createRoute(characterId - 1)) {
+                            launchSingleTop = true
+                        }
+                    }
+                },
+                canGoNext = characterId < lastId,
+                canGoPrev = characterId > firstId
             )
         }
     }

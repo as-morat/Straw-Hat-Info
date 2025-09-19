@@ -18,10 +18,33 @@ val one_pieceBG = Brush.linearGradient(
     )
 )
 
-val rowColor = Brush.linearGradient(
+val onSelectRowColor = Brush.linearGradient(
     listOf(
-        Color(0xFF191654),
-        Color(0xFF43C6AC),
-        Color(0xFFD9D9D9)
+        Color(0xFFFFA751).copy(.9f),
+        Color(0xFFFFD452).copy(.8f),
+        Color(0xFFFFEFBA).copy(.7f)
+    )
+)
+
+val onRowColor = Brush.linearGradient(
+    listOf(
+        Color.Transparent,
+        Color.Transparent
+    )
+)
+
+val onSelectTextColor = Brush.linearGradient(
+    listOf(
+//        Color(0xFFFFA751),
+//        Color(0xFFFFD452),
+//        Color(0xFFFFEFBA)
+        Color(0xFF191654),  // Midnight Navy
+        Color(0xFF43C6AC),  // Sea Green
+    )
+)
+val onTextColor = Brush.linearGradient(
+    listOf(
+        Color.White,
+        Color.White
     )
 )

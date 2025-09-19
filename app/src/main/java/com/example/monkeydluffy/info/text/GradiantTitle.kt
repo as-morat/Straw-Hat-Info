@@ -30,9 +30,8 @@ fun GradientTitle(
                 withStyle(
                     style = TextStyle(
                         brush = brush,
-                        fontSize = if (index == 1) 36.sp else 30.sp,
-                        fontWeight = if (index == 1) FontWeight.ExtraBold else FontWeight.SemiBold,
-                        fontStyle = if (index == 1) FontStyle.Italic else FontStyle.Normal
+                        fontSize = if (index == 1) 32.sp else 28.sp,
+                        fontWeight = if (index == 1) FontWeight.ExtraBold else FontWeight.SemiBold
                     ).toSpanStyle()
                 ) {
                     append(text)

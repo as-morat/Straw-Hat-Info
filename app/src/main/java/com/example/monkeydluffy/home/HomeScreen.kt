@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.monkeydluffy.home.title.Title
 import com.example.monkeydluffy.info.button.CustomButton
+import com.example.monkeydluffy.info.button.SafeButton
 import com.example.monkeydluffy.info.image.FrontImage
 import com.example.monkeydluffy.ui.theme.one_pieceBG
 
@@ -45,7 +46,7 @@ fun HomeScreen(
             )
             Spacer(Modifier.height(62.dp))
 
-            CustomButton(onClick = onClick, text = "Know Crew Members")
+            SafeButton(onClick = onClick, text = "Know Crew Members")
             Spacer(Modifier.height(62.dp))
         }
     }

@@ -1,13 +1,7 @@
 package com.example.monkeydluffy.info
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -16,7 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.monkeydluffy.info.button.CustomButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ExitToApp
+import com.example.monkeydluffy.info.button.SafeButton
 import com.example.monkeydluffy.info.data.Character
 import com.example.monkeydluffy.info.data.CharacterRepo
 import com.example.monkeydluffy.info.image.FrontImage
@@ -25,9 +23,12 @@ import com.example.monkeydluffy.ui.theme.one_pieceBG
 
 @Composable
 fun InfoDeskScreen(
-    character: Character ?= null,
+    character: Character? = null,
     onBack: () -> Unit = {},
-    onDetail: () -> Unit = {}
+    onNext: () -> Unit = {},
+    onPrev: () -> Unit = {},
+    canGoNext: Boolean = true,
+    canGoPrev: Boolean = true
 ) {
     val scrollState = rememberScrollState()
     val displayCharacter = character ?: CharacterRepo.Characters.first()
@@ -42,43 +43,82 @@ fun InfoDeskScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(scrollState)
-                .padding(horizontal = 16.dp, vertical = 24.dp),
+                .padding(horizontal = 20.dp, vertical = 24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            // -------------------
+            // Character Image
+            // -------------------
             FrontImage(
                 imageUrl = displayCharacter.imageUrl,
                 description = displayCharacter.description
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
+            // -------------------
+            // Description Card
+            // -------------------
             DetailInfo(
                 text = displayCharacter.descriptionText,
                 expandText = displayCharacter.expendableText,
                 gradients = displayCharacter.gradients
             )
 
-            Spacer(modifier = Modifier.height(42.dp))
+            Spacer(modifier = Modifier.height(36.dp))
 
-            CustomButton(
-                text = "Know More Member's",
-                onClick = onDetail,
-                modifier = Modifier.width(300.dp)
-            )
+            // -------------------
+            // Prev & Next Buttons
+            // -------------------
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                SafeButton(
+                    text = "Prev",
+                    onClick = onPrev,
+                    color = Brush.linearGradient(
+                        listOf(Color(0xFF2E1437), Color(0xFF808080))
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(54.dp),
+                    icon = Icons.Default.ArrowBack,
+                    enabled = canGoPrev
+                )
 
-            Spacer(modifier = Modifier.height(12.dp))
+                SafeButton(
+                    text = "Next",
+                    onClick = onNext,
+                    color = Brush.linearGradient(
+                        listOf(Color(0xFF808080), Color(0xFF2E1437))
+                    ),
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(54.dp),
+                    icon = Icons.Default.ArrowForward,
+                    enabled = canGoNext,
+                    iconOnRight = true
+                )
+            }
 
-            CustomButton(
-                text = "Home",
-                color = Brush.linearGradient(listOf(
-                    Color(0xffd3cce3),
-                    Color(0xff093637)
-                )),
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // -------------------
+            // Back Button
+            // -------------------
+            SafeButton(
+                text = "Back",
                 onClick = onBack,
-                modifier = Modifier.width(220.dp)
+                color = Brush.linearGradient(
+                    listOf(Color(0xFF373b44), Color(0xFFabbaab))
+                ),
+                modifier = Modifier
+                    .width(220.dp)
+                    .height(54.dp),
+                icon = Icons.Default.ExitToApp
             )
-
-            Spacer(modifier = Modifier.height(12.dp))
         }
     }
 }
