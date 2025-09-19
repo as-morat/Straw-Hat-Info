@@ -8,9 +8,9 @@ Explore character details, descriptions, and images in a modern and elegant UI.
 ## Screenshots
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4c40c42e-2474-4740-822d-e196c7c84d63" width="250" />
-  <img src="https://github.com/user-attachments/assets/46a3545d-57f3-4b90-8544-a6c2ad047ea5" width="250" />
-  <img src="https://github.com/user-attachments/assets/aa5ee296-0df2-4705-841b-d496bf69ded5" width="250" />
+  <img width="300" height="600" alt="Screenshot 1" src="https://github.com/user-attachments/assets/83074f9a-5c72-49e8-bbf6-bd673dd25578" />
+  <img width="300" height="600" alt="Screenshot 2" src="https://github.com/user-attachments/assets/6fdafa75-d5c2-40b2-95d6-b7a1eee1a5df" />
+  <img width="300" height="600" alt="Screenshot 3" src="https://github.com/user-attachments/assets/f6808bf9-16e9-4407-b4cf-0c48c92626b9" />
 </p>
 
 ---
